@@ -1,35 +1,49 @@
-PImage bg,hero,poo;
-float heroW=80,heroH=120,pooW=95,pooH=45;
-float ballY=0;
-float shitPosition=0,shitHeadY,shitTailY,shitSpeed=1;
+PImage bg, hero, BadGuy;
+float hero_W=80, hero_H=120, BadGuy_W=95, BadGuy_H=45;
+float ball_Y=0;
+float shitPosition=0, shitHeadY, shitTailY, shitSpeed=1;
 int flower;
 void setup() 
 {
-  size(335,400);
+  size(335, 400);
   bg= loadImage("bg.png");
   hero= loadImage("hero.png");
-  poo= loadImage("poo.png");
+  BadGuy= loadImage("poo.png");
 }
 
 void draw()
 {
-  image(bg,0,0,335,400);
-  image(hero,width/2-heroW/2,height-heroH,heroW,heroH);
-  image(poo,0,0,pooW,pooH);
+  //Background
+  image(bg, 0, 0, 335, 400);
+
+  //Hero
+  image(hero, width/2-hero_W/2, height-hero_H, hero_W, hero_H);
+
+  //Badguy
+  image(BadGuy, 0, 0, BadGuy_W, BadGuy_H);
+
+  //Bullet
+  noStroke();
+  fill(random(255), random(255), random(255));
+  ellipse(width/2, 307-ball_Y, 10, 10);
+  ball_Y=(ball_Y+5)%height;
+
+  //Shit
   stroke(#9F5000);
   strokeWeight(10);
   float shitHeadY = max(27, 27+shitPosition);
   float shitTailY= max(27, shitHeadY - 20);
-  shitHeadY=min(shitHeadY,80);
-  shitTailY=min(shitTailY,80);
-  line(pooW/2, shitHeadY,pooW/2,shitTailY);
-  shitPosition = ( shitPosition + shitSpeed ) % ( height );
+  shitHeadY=min(shitHeadY, 350);
+  shitTailY=min(shitTailY, 350);
+  line(BadGuy_W/2, shitHeadY, BadGuy_W/2, shitTailY);
+  shitPosition = ( shitPosition + shitSpeed ) % ( 350 );
+
+  //Flower
+  stroke(0, 255, 0);
+  strokeWeight(3);
+  line(BadGuy_W/2, 365, BadGuy_W/2, 400);
   noStroke();
-  fill(random(255), random(255), random(255));
-  ellipse(width/2, 307-ballY , 10 , 10);
-  ballY=(ballY+5)%height;
-  fill(255, 255, 0);
-  noStroke();
-  arc(pooW/2, 80, 30, 30, radians(310-flower), radians(230+flower), PIE);
-  flower=(flower+1)%40;
+  fill(255, 0, 0);
+  arc(BadGuy_W/2, 350, 30, 30, radians(-50-flower), radians(230+flower), PIE);
+  flower=(flower+1)%41;
 }
