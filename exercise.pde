@@ -8,7 +8,7 @@ void setup()
   size(335, 400);
   bg= loadImage("bg.png");
   hero= loadImage("hero.png");
-  BadGuy= loadImage("poo.png");
+  BadGuy= loadImage("badguy.png");
 }
 
 void draw()
