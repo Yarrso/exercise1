@@ -26,7 +26,7 @@ void draw()
   noStroke();
   fill(random(255), random(255), random(255));
   ellipse(width/2, 307-ball_Y, 10, 10);
-  ball_Y=(ball_Y+1)%(312);
+  ball_Y=(ball_Y+5)%(312);
 
   //Shit
   stroke(#9F5000);
