@@ -1,8 +1,9 @@
 PImage bg, hero, BadGuy;
-final float heroW=80, heroH=120, badGuyW=95, badGuyH=45;
-float bulletY=0;
+float heroW=80, heroH=120, badGuyW=95, badGuyH=45;
+float bulletR=10,bulletSpeed=5,bulletY=0;
 float shitPosition=0, shitHeadY, shitTailY, shitSpeed=1;
-int flower;
+float openAngle;
+float maxOpenAngle =40;
 void setup() 
 {
   size(335, 400);
@@ -24,14 +25,14 @@ void draw()
 
   //Bullet
   noStroke();
-  fill(random(255), random(255), random(255));
-  ellipse(width/2, 307-bulletY, 10, 10);
-  bulletY=(bulletY+5)%(312);
+  fill(random(255), random(255), random(255));  //RGB
+  ellipse(width/2, 307-bulletY, bulletR, bulletR); 
+  bulletY=(bulletY+bulletSpeed)%(312);
 
   //Shit
   stroke(#9F5000);
   strokeWeight(10);
-  float shitHeadY = max(27, 26+shitPosition);
+  float shitHeadY = max(27, 27+shitPosition);
   float shitTailY= max(27, shitHeadY - 20);
   shitHeadY=min(shitHeadY, 350);
   shitTailY=min(shitTailY, 350);
@@ -44,6 +45,6 @@ void draw()
   line(badGuyW/2, 365, badGuyW/2, 400);
   noStroke();
   fill(255, 0, 0);
-  arc(badGuyW/2, 350, 30, 30, radians(-50-flower), radians(230+flower), PIE);
-  flower=(flower+1)%41;
+  arc(badGuyW/2, 350, 30, 30, radians(-50-openAngle), radians(230+openAngle), PIE);
+  openAngle=(openAngle+1)%(maxOpenAngle+1);
 }
