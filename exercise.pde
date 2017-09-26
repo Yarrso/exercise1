@@ -33,8 +33,8 @@ void draw()
   stroke(#9F5000);
   strokeWeight(10);
   shitPosition = ( shitPosition + shitSpeed ) % ( 350 );
-  float shitHeadY = min( 27+shitPosition , 350);
-  float shitTailY= max(27, 27+shitPosition - shitLength);
+  shitHeadY = min( 27+shitPosition , 350);
+  shitTailY= max(27, 27+shitPosition - shitLength);
   line(badGuyW/2, shitHeadY, badGuyW/2, shitTailY);
   
   //Flower
